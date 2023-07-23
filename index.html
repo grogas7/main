@@ -5,12 +5,20 @@
     <link rel="icon" href="https://i.ibb.co/37r7V5x/image-1.png" type="image/x-icon" />
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/4317374e36.js" crossorigin="anonymous"></script>
-    <audio id="audio" style="display:none" src="./whoosh-sound-effect-khiana-bethrish_u6Rg1QqI (mp3cut.net).mp3" ></audio>
+    <audio id="audio" style="display:none" src="./whoosh(sound effect).mp3" ></audio>
+    <audio id="audio2" style="display:none" src="./click(sound effect).mp3" ></audio>
+    <meta name="viewport" content="width=device-width, initial-scale=0.1" >
     <script>
         function playsound(){
              var audio = document.getElementById("audio");
              audio.play();
                        }
+      </script>
+      <script>
+        function playsound2(){
+            var audio = document.getElementById("audio2")
+            audio.play();
+        }
       </script>
 </head>
 <body>
@@ -21,7 +29,7 @@
             padding: 0;
         }
         .background-image{ 
-            background: url(./3-D-squares-red-yellow-brown-1920x1080.jpg) no-repeat center center fixed; 
+            background: url(./background.jpg) no-repeat center center fixed; 
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -75,12 +83,26 @@
         </a>
     </div>
 </div>
-<p align="center">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/cG_gvTlz5Bo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/tP5SgBSCDME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/1p_YQaBAYVI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/ThkesbSAiYY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</p>
+<p><div class="container2">
+    <center><a onclick="playsound2()"><button type="submit" class="btn" onclick="openPopup()">My AI Covers</button></a>
+    <div class="popup" id="popup">
+        <iframe width="373" height="210" src="https://www.youtube.com/embed/cG_gvTlz5Bo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="373" height="210" src="https://www.youtube.com/embed/tP5SgBSCDME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="373" height="210" src="https://www.youtube.com/embed/1p_YQaBAYVI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="373" height="210" src="https://www.youtube.com/embed/ThkesbSAiYY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <a onclick="playsound2()"><button type="button" onclick="closePopup()">Geri</button></a></center>
+    </div>
+</div></p>
 </div>
+<script>
+let popup = document.getElementById("popup");
+
+function openPopup(){
+    popup.classList.add("open-popup")
+}
+function closePopup(){
+    popup.classList.remove("open-popup")
+}
+</script>
 </body>
 </html>
