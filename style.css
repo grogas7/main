@@ -98,35 +98,12 @@
     justify-content: center;
 }
 .btn{
+    width: 100vh;
+    height: 100%;
     padding: 10px 60px;
     background: #fff;
     cursor: pointer;
     font-size: 22px;
     font-weight: 500;
-    border-radius: 30px;
-}
-.popup{
-    width: 1000px;
-    background: #000;
-    border-radius: 6px;
-    transform: translate(-50%, -50%) scale(0.1);
-    padding: 0 30px 30px;
-    visibility: hidden;
-}
-.open-popup{
-    visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
-    position: absolute;
-}
-.popup button{
-    width: 100%;
-    margin-top: 50px;
-    padding: 10px 0;
-    background: #683d8f;
-    color: #000;
-    border: 0;
-    outline: none;
-    font-size: 18px;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 600px;
 }
