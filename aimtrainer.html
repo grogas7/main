@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aim Trainer</title>
+    <style>
+        .trail {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: yellow;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        .custom-cursor {
+            width: 10px;
+            height: 10px;
+            background-color: yellow;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999; 
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #2A322F;
+        }
+
+        .target {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            cursor: pointer;
+            background: radial-gradient(circle, red 55%, white 55%);
+            background-size: 50% 50%;
+            background-position: center;
+            border-radius: 50%;
+        }
+
+        .target:hover {
+            background-color: black;
+        }
+
+        #game-container {
+            position: relative;
+            width: 750px;
+            height: 500px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="custom-cursor"></div>
+    <script>
+        let trails = [];
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                endGame();
+            }
+        });
+
+        document.addEventListener("mousemove", (e) => {
+            const cursor = document.querySelector(".custom-cursor");
+            cursor.style.left = e.pageX + "px";
+            cursor.style.top = e.pageY + "px";
+        });
+
+        document.addEventListener("click", (e) => {
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            document.body.appendChild(trail);
+
+            setTimeout(() => {
+                document.body.removeChild(trail);
+            }, 850); 
+        });
+
+                document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                endGame();
+            }
+        });
+        document.addEventListener("mousemove", (e) => {
+          const cursor = document.querySelector(".custom-cursor");
+          cursor.style.left = e.pageX + "px";
+          cursor.style.top = e.pageY + "px";
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                endGame();
+            }
+        });
+    </script>
+    <h1>Aim Trainer</h1>
+    <button id="startButton" onclick="startGame()">Start</button>
+    <button id="stopButton" onclick="endGame()" style="display: none;">Stop</button>
+    <div id="game-container">
+        <div id="play-area" style="position: absolute; width: 100%; height: 100%;"></div>
+    </div>
+    <p>Time: <span id="time">0</span> ms</p>
+
+    <script>
+        let startTime;
+        let endTime;
+        let gameRunning = false;
+        let targetInterval;
+        let totalTargets = 0;
+        let totalElapsedTime = 0;
+
+        function startGame() {
+            if (!gameRunning) {
+                clearTargets();
+                startTime = null;
+                endTime = null;
+                gameRunning = true;
+                totalTargets = 0;
+                totalElapsedTime = 0;
+                document.getElementById('time').textContent = '0';
+                document.getElementById('startButton').style.display = 'none';
+                document.getElementById('stopButton').style.display = 'inline-block';
+                createTarget();
+                targetInterval = setInterval(createTarget, 2500); 
+            }
+        }
+
+        function endGame() {
+            if (gameRunning) {
+                gameRunning = false;
+                clearInterval(targetInterval);
+                document.getElementById('startButton').style.display = 'inline-block';
+                document.getElementById('stopButton').style.display = 'none';
+                if (startTime) {
+                    endTime = new Date().getTime();
+                    const elapsedTime = endTime - startTime;
+                    totalElapsedTime += elapsedTime;
+                    totalTargets++;
+                    document.getElementById('time').textContent = Math.round(totalElapsedTime / totalTargets);
+                }
+            }
+        }
+
+        function createTarget() {
+            const gameContainer = document.getElementById('game-container');
+            const playArea = document.getElementById('play-area');
+            const target = document.createElement('div');
+            target.className = 'target';
+            const targetSize = 45;
+            target.style.width = targetSize + 'px';
+            target.style.height = targetSize + 'px';
+            target.style.backgroundColor = 'yellow';
+            target.style.borderRadius = '50%';
+
+            const maxX = gameContainer.clientWidth - targetSize;
+            const maxY = gameContainer.clientHeight - targetSize;
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            target.style.left = randomX + 'px';
+            target.style.top = randomY + 'px';
+
+            const targetStartTime = new Date().getTime();
+
+            target.onclick = function () {
+                if (!startTime) {
+                    startTime = targetStartTime;
+                }
+                playArea.removeChild(target);
+                const targetEndTime = new Date().getTime();
+                const elapsedTime = targetEndTime - targetStartTime;
+                totalElapsedTime += elapsedTime;
+                totalTargets++;
+                document.getElementById('time').textContent = Math.round(totalElapsedTime / totalTargets);
+            };
+            playArea.appendChild(target);
+        }
+
+        function clearTargets() {
+            const playArea = document.getElementById('play-area');
+            while (playArea.firstChild) {
+                playArea.removeChild(playArea.firstChild);
+            }
+        }
+    </script>
+</body>
+</html>
