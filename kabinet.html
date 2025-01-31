@@ -1,20 +1,53 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yazı Alanı</title>
-    <script>
-        function sayfaYenile() {
-            setTimeout(function() {
-                location.reload();
-            }, 500);  // 0.5 saniye (500ms) bekledikten sonra sayfa yenilenir
+    <title>Calculator</title>
+    <style>
+        button {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 18px;
         }
-    </script>
+        #ekran {
+            width: 100%;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
-    <p id="text"></p>
-    <input name="kod" type="text" maxlength="11" class="col-md-12 form-control">
-    <input type="submit" name="sms" class="btn green" value="Davam et" onclick="sayfaYenile()">
+<center>    <input type="text" id="ekran" readonly>
+    <button onclick="temizle()">C</button>
+    <button onclick="sil()">Sil</button>
+    <button onclick="faiz()">%</button>
+    <button onclick="ekranaYaz('/')">/</button>
+    <br>
+    <button onclick="ekranaYaz('7')">7</button>
+    <button onclick="ekranaYaz('8')">8</button>
+    <button onclick="ekranaYaz('9')">9</button>
+    <button onclick="ekranaYaz('*')">*</button>
+    <br>
+    <button onclick="ekranaYaz('4')">4</button>
+    <button onclick="ekranaYaz('5')">5</button>
+    <button onclick="ekranaYaz('6')">6</button>
+    <button onclick="ekranaYaz('-')">-</button>
+    <br>
+    <button onclick="ekranaYaz('1')">1</button>
+    <button onclick="ekranaYaz('2')">2</button>
+    <button onclick="ekranaYaz('3')">3</button>
+    <button onclick="ekranaYaz('+')">+</button>
+    <br>
+    <button onclick="kvadrat()">x²</button>
+    <button onclick="ekranaYaz('0')">0</button>
+    <button onclick="ekranaYaz('.')">.</button>
+    <button onclick="hesabla()">=</button>
+    <br>
+    <button onclick="kok()">√</button>
+    <button onclick="faktorial()">!</button>
+    <button onclick="ekranaYaz('(')">(</button>
+    <button onclick="ekranaYaz(')')">)</button></center>
+    <script src="calculator.js"></script>
 </body>
 </html>
