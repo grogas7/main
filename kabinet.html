@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yazı Alanı</title>
+    <script>
+        function sayfaYenile() {
+            setTimeout(function() {
+                location.reload();
+            }, 500);  // 0.5 saniye (500ms) bekledikten sonra sayfa yenilenir
+        }
+    </script>
+</head>
+<body>
+    <p id="text"></p>
+    <input name="kod" type="text" maxlength="11" class="col-md-12 form-control">
+    <input type="submit" name="sms" class="btn green" value="Davam et" onclick="sayfaYenile()">
+</body>
+</html>
